@@ -69,3 +69,18 @@
 - Object의 hashCode() 메소드는 객체의 메모리 번지를 이용해서 해시코드를 만들어서 리턴한다
 - 컬렉션 프레임워크의 HashSet, HashMap, Hashtable과 같은 클래스는 두 객체가 동등한 객체인지 판단할 때 hashCode()의 오버라이딩이 필요하다
 - 어떠한 객체를 동등하게 만들려면 hashCode(), equals()를 Overriding을 해줘야 한다
+
+# 객체 문자정보(toString())
+- 객체의 문자 정보란 객체를 문자열로 표현한 값을 말한다
+- Object클래스의toString() 메소드는 객체의 문자 정보를 리턴한다
+- 클래스명@해시코드로 구성된 문자 정보를 리턴
+```java
+Object obj = new Object();
+System.out.println(obj.toString());
+//결과값
+//java.lang.Object@de6ced
+```
+- 일반적으로는 재정의해서 의미있는 문자정보가 나오도록 한다
+- Date 클래스는 toString()메소드를 재정의하여 현재 시스템의 날짜와 시간 정보를 리턴
+- String클래스는 toString()메소드를 재정의하여 저장하고 있는 문자열을 리턴
+- System.out.println(Object) 메소드는 Object의 toString()의 리턴값을 출력한다
