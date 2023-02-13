@@ -122,5 +122,31 @@ public class ListExam01{
 
 # Example Collection&Iterator
 ```java
+package cl;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+public class ListExam03 {
+    public static void main(String[] args) {
+        Collection<String> collection = new ArrayList<>(); //List가 Collection을 상속받기 때문에 가능
+        // 만들어지는 인스턴스는 ArrayList지만 참조타입이 Collection이기 때문에
+        // 부모인 Collection(참조타입)이 가지고 있는 메서드밖에 사용하지 못한다.
+
+        collection.add("kim");
+        collection.add("lee");
+        collection.add("hong");
+        //collection/get(0) ->사용 불가 get()은 ArrayList가 가지고있는 메서드이지 Collection이 가지고 있지 않다
+
+        System.out.println(collection.size()); //사이즈를 보여준다
+
+        //Collection을 꺼내기 위한 방법
+        Iterator<String> iter = collection.iterator();
+        while(iter.hasNext()){ //hasNext()는 꺼낼것이 있느냐 없느냐
+            String str = iter.next();
+            System.out.println(str);
+        }
+    }
+}
 ```
