@@ -150,3 +150,27 @@ public class ListExam03 {
     }
 }
 ```
+
+# Example Set
+```java
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class SetExam {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+        set.add("hello");
+        set.add("hi");
+        set.add("hong");
+
+        Iterator<String> iter = set.iterator();
+        while(iter.hasNext()){
+            String str = iter.next();
+            System.out.println(str);
+        }
+    }
+}
+```
+
+
