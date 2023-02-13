@@ -3,7 +3,6 @@
 - 자료(Data)를 다룰 때 반드시 필요한 클래스의 모음으로서 JAVA프로그래머라면 꼭 숙지
 
 
-
 ![collectionFrameWork](https://user-images.githubusercontent.com/101091478/218373127-951fa8c1-41b5-4730-962e-9af872f28a9e.png)
 
 # Collection = 바구니(어떠한 것들을 집어 넣는다) -> Iterator를 참조
@@ -11,6 +10,11 @@
 - size() -> 사이즈
 - iterator(): iterator -> 바구니에 넣은 순서를 잘 모르기 때문에 어떠한것이 있으면 꺼낸다라는 느낌
 - 꺼낼것이 있는지 없는지부터 판단 -> iterator() 인터페이스로 판단
+
+# 중요핵심
+1. Key들이 모두 모이면 Set자료구조
+2. Set자료구조에서 모든걸 꺼내려면 Iterator를 사용
+3. Map에서 값을 꺼내려면 Key를 이용해서 값을 꺼낸다
 
 # Iterator(디자인 패턴의 이름이기도 하다)
 hasNext(): boolean -> 참 거짓으로 있는지 없는지
@@ -173,4 +177,125 @@ public class SetExam {
 }
 ```
 
+# Example Set(another class)
+```java
+package st;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class SetExam2 {
+    public static void main(String[] args) {
+        Set<MyData> mySet = new HashSet<>();
+        mySet.add(new MyData("kim",500));
+        mySet.add(new MyData("hong",200));
+        mySet.add(new MyData("jin",300));
+
+        Iterator<MyData> iterator = mySet.iterator();
+        while(iterator.hasNext()){
+            MyData myData = iterator.next();
+            System.out.println(myData);
+        }
+    }
+}
+
+class MyData{
+    private String name;
+    private int value;
+
+    public MyData(String name, int value){
+        this.name = name;
+        this.value = value;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "MyData{" +
+                "name='" + name + '\'' +
+                ", value=" + value +
+                '}';
+    }
+}
+```
+
+# hash란
+- hashCode()를 호출하여 hashCode()값의 버켓을 생성하여 값을 저장한다.
+ex)
+A.hashCode() -> hashCode값이 (가) 라고하면 가 라는 버켓 속에 A값을 저장(리턴)
+
+- hash를 사용하려면 equals를 항상 오버라이딩 해줘야 한다.
+
+# Map_Example
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapExam {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put("k1", "hello");  //key값은 유일한 값을 가져야 한다.
+        map.put("k2", "hi");
+        map.put("k3", "안녕");
+
+        System.out.println(map.get("k1"));
+        System.out.println(map.get("k2"));
+        System.out.println(map.get("k3"));
+    }
+}
+```
+
+
+# Map_Example02
+```java
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class MapExam02 {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+
+        map.put("k1", "hello");
+        map.put("k2", "hi");
+        map.put("k3", "안녕");
+
+        Set<String> keySet = map.keySet(); //map에대한 모든 접근이 가능한 set객체가 나온다.
+        Iterator<String> iterator = keySet.iterator();
+        while(iterator.hasNext()){
+            String key = iterator.next(); //key의 값 하나씩 나온다
+            String value = map.get(key);
+
+            System.out.println(key + " : " + value);
+        }
+    }
+}
+```
+
+# SortExample
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class SortExample {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("kim");
+        list.add("lee");
+        list.add("hong");
+        //배열을 정렬할 땐 arrays
+        Collections.sort(list); //메소드들을 모아둔 클래스 -> Collections
+        //Collections.shuffle(list); 섞는것
+
+        for(int i = 0; i<list.size(); i++){
+            System.out.println(list.get(i));
+        }
+    }
+}
+```
